@@ -1,0 +1,18 @@
+.hero {
+  height: 80vh;
+  background: linear-gradient(rgba(37,99,235,0.8), rgba(0,0,0,0.6));
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.navbar {
+  border-bottom: 3px solid rgba(255,255,255,0.2);
+}

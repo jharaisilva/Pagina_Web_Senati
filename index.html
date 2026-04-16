@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodePulse Solutions — Software a Medida que Escala con Tu Negocio</title>
+  <meta name="description" content="Convertimos ideas complejas en software funcional en tiempo récord. Apps móviles nativas y sistemas web empresariales con arquitecturas limpias y escalables CONTÁCTANOS." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'deep-blue':    '#0A1628',
+            'space-gray':   '#1E2A3A',
+            'card-gray':    '#243044',
+            'neon-green':   '#00FF88',
+            'neon-dim':     '#00CC6A',
+            'text-muted':   '#8A9BB5',
+            'text-light':   '#C8D6E8',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'neon': '0 0 20px rgba(0, 255, 136, 0.3)',
+            'neon-lg': '0 0 40px rgba(0, 255, 136, 0.2)',
+            'card': '0 4px 24px rgba(0, 0, 0, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #0A1628; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #00FF88, #00BFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,255,136,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(0,191,255,0.06) 0%, transparent 60%),
+        #0A1628;
+    }
+
+    .card-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,255,136,0.15);
+    }
+
+    .faq-item summary { cursor: pointer; list-style: none; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item[open] summary .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.2s ease; }
+
+    .noise-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    @keyframes pulse-neon {
+      0%, 100% { box-shadow: 0 0 20px rgba(0,255,136,0.3); }
+      50%       { box-shadow: 0 0 40px rgba(0,255,136,0.6); }
+    }
+    .btn-primary { animation: pulse-neon 3s ease-in-out infinite; }
+
+    .grid-lines {
+      background-image:
+        linear-gradient(rgba(0,255,136,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+  </style>
+</head>
+<body class="font-sans text-white antialiased">
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md bg-deep-blue/80">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-neon-green flex items-center justify-center">
+          <svg class="w-5 h-5 text-deep-blue" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="font-bold text-lg tracking-tight">CodePulse <span class="text-neon-green">Solutions</span></span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-text-muted">
+        <a href="#problema" class="hover:text-white transition-colors">El Problema</a>
+        <a href="#solucion" class="hover:text-white transition-colors">Solución</a>
+        <a href="#beneficios" class="hover:text-white transition-colors">Beneficios</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+      </div>
+      <a href="#auditoria" class="hidden md:inline-flex items-center gap-2 bg-neon-green text-deep-blue font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-neon-dim transition-colors">
+        Auditoría Gratuita
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="hero-bg grid-lines min-h-screen flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24 text-center">
+
+      <div class="inline-flex items-center gap-2 bg-neon-green/10 border border-neon-green/20 text-neon-green text-xs font-semibold px-4 py-2 rounded-full mb-8 uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-neon-green animate-pulse"></span>
+        Desarrollo de Software a Medida
+      </div>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 max-w-5xl mx-auto">
+        Tu Negocio Merece Software que
+        <span class="gradient-text"> Crece Contigo,</span>
+        No que te Frene
+      </h1>
+
+      <p class="text-lg md:text-xl text-text-light max-w-2xl mx-auto mb-10 leading-relaxed">
+        Convertimos tus procesos manuales y hojas de cálculo caóticas en aplicaciones móviles y sistemas web empresariales que funcionan desde el día uno — y siguen funcionando cuando tu empresa se multiplica por 10.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#auditoria" class="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-neon-green text-deep-blue font-bold text-base px-8 py-4 rounded-xl hover:bg-neon-dim transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Agendar Auditoría Gratuita
+        </a>
+        <a href="#solucion" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 text-text-light font-medium text-base px-8 py-4 rounded-xl hover:border-neon-green/40 hover:text-white transition-colors">
+          Ver cómo funciona
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Social proof bar -->
+      <div class="flex flex-wrap items-center justify-center gap-8 text-text-muted text-sm border-t border-white/5 pt-10">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>+50 proyectos entregados</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>MVPs en 8–12 semanas</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>100% código de tu propiedad</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Soporte post-lanzamiento incluido</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN PROBLEMA (AGITACIÓN)
+  ═══════════════════════════════════════════ -->
+  <section id="problema" class="py-24 bg-space-gray">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center mb-16">
+        <p class="text-neon-green text-sm font-semibold uppercase tracking-widest mb-3">¿Te suena familiar?</p>
+        <h2 class="text-3xl md:text-5xl font-black mb-4">El Caos Silencioso que Está<br/><span class="gradient-text">Costándote Dinero Cada Día</span></h2>
+        <p class="text-text-muted text-lg max-w-xl mx-auto">Mientras tu competencia automatiza, tú sigues apagando incendios con herramientas que no fueron diseñadas para tu negocio.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Pain 1 -->
+        <div class="card-hover bg-card-gray border border-red-500/20 rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">El Infierno de las Hojas de Cálculo</h3>
+          <p class="text-text-muted leading-relaxed">Tienes 47 archivos de Excel con nombres como "FINAL_v3_DEFINITIVO_2.xlsx". Nadie sabe cuál es el correcto. Un error de fórmula puede costar miles de dólares antes de que alguien lo note.</p>
+        </div>
+
+        <!-- Pain 2 -->
+        <div class="card-hover bg-card-gray border border-orange-500/20 rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Software que se Cae en el Peor Momento</h3>
+          <p class="text-text-muted leading-relaxed">Ese sistema genérico que compraste "porque era barato" se congela justo cuando tienes 20 pedidos pendientes. El soporte técnico tarda 3 días en responder y la solución es "reinicia el servidor".</p>
+        </div>
+
+        <!-- Pain 3 -->
+        <div class="card-hover bg-card-gray border border-yellow-500/20 rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Procesos que Dependen de una Sola Persona</h3>
+          <p class="text-text-muted leading-relaxed">Solo Juan sabe cómo usar el sistema. Cuando Juan se va de vacaciones, la operación entera se paraliza. Tu empresa no puede escalar porque está atada a procesos manuales e improvisados.</p>
+        </div>
+
+      </div>
+
+      <!-- Agitation closer -->
+      <div class="mt-12 bg-red-500/5 border border-red-500/15 rounded-2xl p-8 text-center">
+        <p class="text-lg text-text-light max-w-3xl mx-auto">
+          Cada día que operas con herramientas inadecuadas es un día que tu competencia te saca ventaja. <strong class="text-white">No es un problema de esfuerzo — es un problema de infraestructura digital.</strong>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN SOLUCIÓN
+  ═══════════════════════════════════════════ -->
+  <section id="solucion" class="py-24 bg-deep-blue">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <div>
+          <p class="text-neon-green text-sm font-semibold uppercase tracking-widest mb-4">La Solución</p>
+          <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+            Software Construido Exactamente para <span class="gradient-text">Tu Negocio.</span> No para el Negocio de Otro.
+          </h2>
+          <p class="text-text-light text-lg mb-8 leading-relaxed">
+            El desarrollo a medida no es un lujo — es la única forma de recuperar el control total de tus operaciones. Un sistema diseñado para tus flujos de trabajo específicos elimina el caos, automatiza lo repetitivo y le da a tu equipo las herramientas que realmente necesita.
+          </p>
+
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Auditoría de procesos sin costo</h4>
+                <p class="text-text-muted text-sm">Analizamos tu operación actual e identificamos exactamente qué automatizar para el mayor impacto.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Desarrollo iterativo con entregas visibles</h4>
+                <p class="text-text-muted text-sm">No desaparecemos 6 meses. Ves avances reales cada 2 semanas y tienes control total del proceso.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-4 h-4 text-neon-green" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Arquitectura que no necesita reescribirse</h4>
+                <p class="text-text-muted text-sm">Construimos con patrones limpios desde el inicio. Cuando pases de 100 a 10,000 usuarios, el sistema aguanta.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process steps -->
+        <div class="space-y-4">
+          <div class="bg-card-gray border border-white/5 rounded-2xl p-6 flex items-center gap-5">
+            <div class="w-12 h-12 rounded-xl bg-neon-green text-deep-blue font-black text-lg flex items-center justify-center flex-shrink-0">1</div>
+            <div>
+              <h4 class="font-bold text-white mb-1">Auditoría y Diagnóstico</h4>
+              <p class="text-text-muted text-sm">Sesión de 60 minutos para mapear tus procesos y definir el alcance del proyecto.</p>
+            </div>
+          </div>
+          <div class="bg-card-gray border border-white/5 rounded-2xl p-6 flex items-center gap-5">
+            <div class="w-12 h-12 rounded-xl bg-neon-green/20 border border-neon-green/30 text-neon-green font-black text-lg flex items-center justify-center flex-shrink-0">2</div>
+            <div>
+              <h4 class="font-bold text-white mb-1">Diseño y Arquitectura</h4>
+              <p class="text-text-muted text-sm">Prototipo funcional y definición técnica antes de escribir una sola línea de código.</p>
+            </div>
+          </div>
+          <div class="bg-card-gray border border-white/5 rounded-2xl p-6 flex items-center gap-5">
+            <div class="w-12 h-12 rounded-xl bg-neon-green/20 border border-neon-green/30 text-neon-green font-black text-lg flex items-center justify-center flex-shrink-0">3</div>
+            <div>
+              <h4 class="font-bold text-white mb-1">Desarrollo por Sprints</h4>
+              <p class="text-text-muted text-sm">Ciclos de 2 semanas con demos reales. Tú apruebas cada etapa antes de continuar.</p>
+            </div>
+          </div>
+          <div class="bg-card-gray border border-white/5 rounded-2xl p-6 flex items-center gap-5">
+            <div class="w-12 h-12 rounded-xl bg-neon-green/20 border border-neon-green/30 text-neon-green font-black text-lg flex items-center justify-center flex-shrink-0">4</div>
+            <div>
+              <h4 class="font-bold text-white mb-1">Lanzamiento y Soporte</h4>
+              <p class="text-text-muted text-sm">Deploy, capacitación del equipo y soporte continuo para que nada se detenga.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BENEFICIOS CLAVE
+  ═══════════════════════════════════════════ -->
+  <section id="beneficios" class="py-24 bg-space-gray">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center mb-16">
+        <p class="text-neon-green text-sm font-semibold uppercase tracking-widest mb-3">Por qué CodePulse</p>
+        <h2 class="text-3xl md:text-5xl font-black mb-4">Tres Pilares que Protegen<br/><span class="gradient-text">Tu Inversión a Largo Plazo</span></h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+
+        <!-- Benefit 1: Security -->
+        <div class="card-hover bg-card-gray border border-white/5 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-white">Seguridad de Datos Empresarial</h3>
+          <p class="text-text-muted leading-relaxed mb-6">Tus datos no viven en servidores de terceros que no controlas. Implementamos autenticación robusta, cifrado en tránsito y en reposo, y auditorías de acceso desde el primer día.</p>
+          <ul class="text-left space-y-2 text-sm text-text-muted">
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Autenticación JWT + OAuth2</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Cifrado AES-256 en base de datos</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Roles y permisos granulares</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Backups automáticos diarios</li>
+          </ul>
+        </div>
+
+        <!-- Benefit 2: Scalability -->
+        <div class="card-hover bg-card-gray border border-neon-green/20 rounded-2xl p-8 text-center relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-neon-green text-deep-blue text-xs font-bold px-3 py-1 rounded-full">MÁS POPULAR</div>
+          <div class="w-16 h-16 rounded-2xl bg-neon-green/10 border border-neon-green/20 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-neon-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-white">Escalabilidad Sin Límites</h3>
+          <p class="text-text-muted leading-relaxed mb-6">Arquitecturas diseñadas para crecer. Microservicios, APIs RESTful y bases de datos optimizadas que manejan 100 usuarios hoy y 100,000 mañana sin reescribir nada.</p>
+          <ul class="text-left space-y-2 text-sm text-text-muted">
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Arquitectura de microservicios</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Infraestructura cloud-ready</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> APIs documentadas y versionadas</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Load balancing automático</li>
+          </ul>
+        </div>
+
+        <!-- Benefit 3: UX -->
+        <div class="card-hover bg-card-gray border border-white/5 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-white">UX Intuitiva para Tu Equipo</h3>
+          <p class="text-text-muted leading-relaxed mb-6">Un sistema que nadie quiere usar es un sistema que nadie usa. Diseñamos interfaces que tu equipo adopta en horas, no en semanas, reduciendo errores y aumentando la productividad.</p>
+          <ul class="text-left space-y-2 text-sm text-text-muted">
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Diseño centrado en el usuario</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Flujos validados con usuarios reales</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Responsive en todos los dispositivos</li>
+            <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Capacitación incluida en el proyecto</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN TÉCNICA
+  ═══════════════════════════════════════════ -->
+  <section class="py-20 bg-deep-blue border-y border-white/5">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center mb-12">
+        <p class="text-neon-green text-sm font-semibold uppercase tracking-widest mb-3">Stack Tecnológico</p>
+        <h2 class="text-3xl md:text-4xl font-black mb-4">Tecnologías Probadas en Producción,<br/><span class="gradient-text">No Experimentos de Laboratorio</span></h2>
+        <p class="text-text-muted max-w-2xl mx-auto">Usamos el stack correcto para cada problema. Sin modas pasajeras — solo tecnologías con ecosistemas maduros que garantizan estabilidad y talento disponible para tu equipo futuro.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">☕</div>
+          <div class="font-bold text-white text-sm">Java / Kotlin</div>
+          <div class="text-text-muted text-xs mt-1">Apps móviles nativas Android</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">🐘</div>
+          <div class="font-bold text-white text-sm">Laravel / PHP</div>
+          <div class="text-text-muted text-xs mt-1">Backend empresarial robusto</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">⚛️</div>
+          <div class="font-bold text-white text-sm">React / Next.js</div>
+          <div class="text-text-muted text-xs mt-1">Interfaces web modernas</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">🍎</div>
+          <div class="font-bold text-white text-sm">Swift / SwiftUI</div>
+          <div class="text-text-muted text-xs mt-1">Apps nativas iOS de alto rendimiento</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">🐘</div>
+          <div class="font-bold text-white text-sm">PostgreSQL</div>
+          <div class="text-text-muted text-xs mt-1">Base de datos relacional escalable</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">🐳</div>
+          <div class="font-bold text-white text-sm">Docker / K8s</div>
+          <div class="text-text-muted text-xs mt-1">Infraestructura containerizada</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">☁️</div>
+          <div class="font-bold text-white text-sm">AWS / GCP</div>
+          <div class="text-text-muted text-xs mt-1">Cloud de nivel empresarial</div>
+        </div>
+        <div class="bg-card-gray border border-white/5 rounded-xl p-5 text-center card-hover">
+          <div class="text-2xl mb-2">🔄</div>
+          <div class="font-bold text-white text-sm">CI/CD Pipelines</div>
+          <div class="text-text-muted text-xs mt-1">Despliegues automáticos y seguros</div>
+        </div>
+      </div>
+
+      <p class="text-center text-text-muted text-sm">
+        ¿Tienes un stack existente? Lo integramos. Nuestro equipo trabaja con lo que ya tienes para no tirar inversiones previas.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════════ -->
+  <section id="faq" class="py-24 bg-space-gray">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="text-center mb-14">
+        <p class="text-neon-green text-sm font-semibold uppercase tracking-widest mb-3">Preguntas Frecuentes</p>
+        <h2 class="text-3xl md:text-4xl font-black">Todo lo que Necesitas Saber<br/><span class="gradient-text">Antes de Dar el Paso</span></h2>
+      </div>
+
+      <div class="space-y-4">
+
+        <details class="faq-item bg-card-gray border border-white/5 rounded-2xl overflow-hidden group">
+          <summary class="flex items-center justify-between p-6 gap-4">
+            <span class="font-semibold text-white text-lg">¿Cuánto tiempo toma el desarrollo?</span>
+            <span class="faq-icon w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 text-neon-green text-xl font-light">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-text-muted leading-relaxed border-t border-white/5 pt-5">
+            <p>Depende del alcance, pero manejamos tres rangos claros:</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-start gap-3"><span class="text-neon-green font-bold mt-0.5">→</span><span><strong class="text-white">MVP básico:</strong> 8 a 12 semanas. Suficiente para validar tu idea con usuarios reales y empezar a generar tracción.</span></li>
+              <li class="flex items-start gap-3"><span class="text-neon-green font-bold mt-0.5">→</span><span><strong class="text-white">Sistema empresarial mediano:</strong> 3 a 5 meses. Módulos completos con integraciones y flujos complejos.</span></li>
+              <li class="flex items-start gap-3"><span class="text-neon-green font-bold mt-0.5">→</span><span><strong class="text-white">Plataforma compleja:</strong> 6 a 12 meses. Proyectos con múltiples roles, integraciones de terceros y alta concurrencia.</span></li>
+            </ul>
+            <p class="mt-4">En la auditoría gratuita te damos un estimado preciso basado en tus requerimientos específicos.</p>
+          </div>
+        </details>
+
+        <details class="faq-item bg-card-gray border border-white/5 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 gap-4">
+            <span class="font-semibold text-white text-lg">¿El código será de mi propiedad?</span>
+            <span class="faq-icon w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 text-neon-green text-xl font-light">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-text-muted leading-relaxed border-t border-white/5 pt-5">
+            <p><strong class="text-white">Sí, al 100% y sin condiciones.</strong> Desde el primer commit, todo el código fuente, los assets, la documentación técnica y los accesos a servidores son tuyos.</p>
+            <p class="mt-3">No usamos licencias propietarias ni dependencias que te aten a nosotros. Si en algún momento decides trabajar con otro equipo, puedes hacerlo sin fricciones. Esto queda estipulado explícitamente en el contrato antes de iniciar cualquier trabajo.</p>
+          </div>
+        </details>
+
+        <details class="faq-item bg-card-gray border border-white/5 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 gap-4">
+            <span class="font-semibold text-white text-lg">¿Ofrecen soporte post-lanzamiento?</span>
+            <span class="faq-icon w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 text-neon-green text-xl font-light">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-text-muted leading-relaxed border-t border-white/5 pt-5">
+            <p><strong class="text-white">Sí, y es parte del proceso, no un extra.</strong> Todo proyecto incluye un período de garantía de 30 días post-lanzamiento donde corregimos cualquier bug sin costo adicional.</p>
+            <p class="mt-3">Después del período de garantía, ofrecemos planes de mantenimiento mensual que incluyen:</p>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Monitoreo de uptime 24/7</li>
+              <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Actualizaciones de seguridad</li>
+              <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Horas de desarrollo para mejoras continuas</li>
+              <li class="flex items-center gap-2"><span class="text-neon-green">✓</span> Soporte técnico con SLA garantizado</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item bg-card-gray border border-white/5 rounded-2xl overflow-hidden">
+          <summary class="flex items-center justify-between p-6 gap-4">
+            <span class="font-semibold text-white text-lg">¿Qué pasa si el proyecto cambia durante el desarrollo?</span>
+            <span class="faq-icon w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/20 flex items-center justify-center flex-shrink-0 text-neon-green text-xl font-light">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-text-muted leading-relaxed border-t border-white/5 pt-5">
+            <p>Los cambios son normales y los gestionamos con transparencia. Trabajamos con metodología ágil, lo que significa que el alcance puede ajustarse entre sprints sin traumatizar el proyecto.</p>
+            <p class="mt-3">Si un cambio implica trabajo adicional significativo, te lo comunicamos antes de ejecutarlo con un estimado de tiempo y costo. Sin sorpresas en la factura final.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA FINAL — AUDITORÍA GRATUITA
+  ═══════════════════════════════════════════ -->
+  <section id="auditoria" class="py-24 hero-bg grid-lines">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+
+      <div class="inline-flex items-center gap-2 bg-neon-green/10 border border-neon-green/20 text-neon-green text-xs font-semibold px-4 py-2 rounded-full mb-8 uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-neon-green animate-pulse"></span>
+        Sin costo · Sin compromiso · 60 minutos
+      </div>
+
+      <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+        Agenda Tu Auditoría Gratuita<br/><span class="gradient-text">y Descubre el Potencial Real</span><br/>de Tu Negocio
+      </h2>
+
+      <p class="text-text-light text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        En 60 minutos analizamos tus procesos actuales, identificamos los cuellos de botella más costosos y te presentamos un plan de acción concreto — sin jerga técnica y sin presión de venta.
+      </p>
+
+      <!-- Form -->
+      <div class="bg-card-gray border border-white/10 rounded-3xl p-8 md:p-10 max-w-xl mx-auto shadow-card">
+        <form class="space-y-5" onsubmit="handleSubmit(event)">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-text-light mb-2">Nombre</label>
+              <input type="text" placeholder="Tu nombre" required
+                class="w-full bg-space-gray border border-white/10 rounded-xl px-4 py-3 text-white placeholder-text-muted focus:outline-none focus:border-neon-green/50 focus:ring-1 focus:ring-neon-green/30 transition-colors text-sm" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-text-light mb-2">Empresa</label>
+              <input type="text" placeholder="Nombre de tu empresa" required
+                class="w-full bg-space-gray border border-white/10 rounded-xl px-4 py-3 text-white placeholder-text-muted focus:outline-none focus:border-neon-green/50 focus:ring-1 focus:ring-neon-green/30 transition-colors text-sm" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-text-light mb-2">Correo electrónico</label>
+            <input type="email" placeholder="tu@empresa.com" required
+              class="w-full bg-space-gray border border-white/10 rounded-xl px-4 py-3 text-white placeholder-text-muted focus:outline-none focus:border-neon-green/50 focus:ring-1 focus:ring-neon-green/30 transition-colors text-sm" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-text-light mb-2">¿Qué necesitas digitalizar?</label>
+            <select required class="w-full bg-space-gray border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-green/50 focus:ring-1 focus:ring-neon-green/30 transition-colors text-sm appearance-none">
+              <option value="" disabled selected class="text-text-muted">Selecciona una opción</option>
+              <option>App móvil (Android / iOS)</option>
+              <option>Sistema web empresarial</option>
+              <option>MVP para startup</option>
+              <option>Automatización de procesos internos</option>
+              <option>Integración de sistemas existentes</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <button type="submit"
+            class="w-full bg-neon-green text-deep-blue font-bold text-base py-4 rounded-xl hover:bg-neon-dim transition-colors flex items-center justify-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Agendar Mi Auditoría Gratuita
+          </button>
+          <p class="text-text-muted text-xs text-center">
+            🔒 Tu información es confidencial. No spam, nunca.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="bg-deep-blue border-t border-white/5 py-10">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-neon-green flex items-center justify-center">
+          <svg class="w-4 h-4 text-deep-blue" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="font-bold text-sm">CodePulse <span class="text-neon-green">Solutions</span></span>
+      </div>
+      <p class="text-text-muted text-sm">© 2026 CodePulse Solutions. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-6 text-text-muted text-sm">
+        <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+        <a href="#" class="hover:text-white transition-colors">Términos</a>
+        <a href="mailto:hola@codepulse.dev" class="hover:text-neon-green transition-colors">hola@codepulse.dev</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = '✓ ¡Solicitud enviada! Te contactamos en 24h.';
+      btn.classList.remove('bg-neon-green', 'hover:bg-neon-dim');
+      btn.classList.add('bg-neon-dim', 'cursor-default');
+      btn.disabled = true;
+    }
+  </script>
+  
+</body>
+</html>
